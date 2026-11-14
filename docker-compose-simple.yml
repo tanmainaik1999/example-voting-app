@@ -1,0 +1,25 @@
+services:
+  vote:
+    image: vote
+    ports"
+      - "8000:80"
+  result:
+    image: result
+    ports:
+    - "8081:80"
+  worker:
+    image: worker
+
+  redis:
+    image: redis:alpine
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
